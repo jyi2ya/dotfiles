@@ -1,0 +1,75 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#575757"
+blue = "#0087af"
+cyan = "#00afaf"
+green = "#00af5f"
+magenta = "#af87d7"
+red = "#d70000"
+white = "#a3a3a3"
+yellow = "#ff8700"
+
+[colors.cursor]
+cursor = "#444444"
+text = "#eeeeee"
+
+[colors.normal]
+black = "#EEEEEE"
+blue = "#005FAF"
+cyan = "#008787"
+green = "#008700"
+magenta = "#8700AF"
+red = "#AF0000"
+white = "#444444"
+yellow = "#D75F00"
+
+[colors.primary]
+background = "#eeeeee"
+foreground = "#444444"
+
+[font]
+size = 16.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "InconsolataGo"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "command"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "command"
+
+[scrolling]
+history = 10000
+multiplier = 10
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[shell]
+program = "debian"
+
+[window.dimensions]
+columns = 85
+lines = 25
+
+[window.padding]
+x = 2
+y = 2
