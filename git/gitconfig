@@ -1,0 +1,21 @@
+[user]
+	email = jyi2ya@outlook.com
+	name = jyi2ya
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+	ff = false
+[pull]
+	rebase = true
+[credential]
+	helper = store
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = master
