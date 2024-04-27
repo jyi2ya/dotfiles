@@ -5,9 +5,8 @@
 	editor = vim
 [merge]
 	tool = vimdiff
-	ff = false
 [pull]
-	rebase = true
+    rebase = true
 [credential]
 	helper = store
 [filter "lfs"]
