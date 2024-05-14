@@ -1,9 +1,9 @@
+source ~/.vimrc.minimal
+
 " ==== personal ====
 " let g:coc_status_warning_sign = '!!'
 
 " set signcolumn=yes
-
-color desert
 "let ayucolor="mirage" " for mirage version of theme
 "let ayucolor="dark"   " for dark version of theme
 
@@ -16,23 +16,10 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " let mapleader = ','
 " let g:mapleader = ','
 
-set nocompatible                " don't bother with vi compatibility
-
-" filetype
-filetype on
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-" syntax
-syntax on
 set synmaxcol=500
 
 " history : how many lines of history VIM has to remember
 set history=2000
-
-" files and directories
-set swapfile
-set undofile
 
 if has('nvim')
     set undodir=~/.local/share/nvim/undo//
@@ -42,8 +29,6 @@ else
     set directory=~/.local/share/vim/swap//
 endif
 
-" base
-set viminfo='200,<5000,s4096,:5000
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
 set shortmess=atI
 
@@ -57,45 +42,15 @@ set visualbell t_vb=            " turn off error beep/flash
 set t_vb=
 set tm=500
 
-" show location
-" set cursorcolumn
-set cursorline
-
-" movement
-set scrolloff=3                 " keep 3 lines when scrolling
-
-" show
-set ruler                       " show the current row and column
-set relativenumber
 set nowrap
 set showcmd                     " display incomplete commands
 set showmode                    " display current modes
-set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
-
-" search
-" set hlsearch                    " highlight searches
-set incsearch                   " do incremental searching, search as you type
-set ignorecase                  " ignore case when searching
-set smartcase                   " no ignorecase if Uppercase char present
 " augroup vimrc-incsearch-highlight
 " 	autocmd!
 " 	autocmd CmdlineEnter /,\? :set hlsearch
 " 	autocmd CmdlineLeave /,\? :set nohlsearch
 " augroup END
-
-" tab
-set expandtab                   " expand tabs to spaces
-set smarttab
-set shiftround
-
-" indent
-set autoindent smartindent shiftround
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set expandtab
-set smarttab
 
 " NOT SUPPORT
 " fold
@@ -137,19 +92,11 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set whichwrap=<,>,b,s
 set noequalalways
 
-" if this not work ,make sure .viminfo is writable for you
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
 " Enable basic mouse behavior such as resizing buffers.
 set mousehide
 " set mouse=a
 
 " ============================ theme and status line ============================
-
-" theme
-set colorcolumn=78
 highlight ColorColumn ctermbg=grey guibg=grey
 highlight SignColumn ctermbg=grey guibg=grey
 
@@ -241,7 +188,6 @@ nnoremap <F4> :set wrap! wrap?<CR>
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
-au InsertLeave * set nopaste
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 " tab 替换 Esc
@@ -282,8 +228,6 @@ nnoremap <silent> g* g*zz
 noremap <silent><leader>/ :nohls<CR>
 
 "Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
-vnoremap < <gv
-vnoremap > >gv
 
 " y$ -> Y Make Y behave like other capitals
 map Y y$

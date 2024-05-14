@@ -1,0 +1,65 @@
+set nocompatible
+
+color desert
+
+" filetype
+filetype on
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+" syntax
+syntax on
+
+" files and directories
+set swapfile
+set undofile
+
+" base
+set viminfo='200,<5000,s4096,:5000
+
+" show location
+" set cursorcolumn
+set cursorline
+
+" movement
+set scrolloff=3                 " keep 3 lines when scrolling
+
+" show
+set ruler                       " show the current row and column
+set relativenumber
+set number
+set showmatch                   " jump to matches when entering parentheses
+
+" search
+" set hlsearch                    " highlight searches
+set incsearch                   " do incremental searching, search as you type
+set ignorecase                  " ignore case when searching
+set smartcase                   " no ignorecase if Uppercase char present
+
+" tab
+set tabstop=4
+set softtabstop=4
+set smarttab
+set expandtab                   " expand tabs to spaces
+
+" indent
+set shiftround
+set autoindent
+set smartindent
+set shiftwidth=4
+
+" fold
+set foldmethod=marker
+
+" if this not work ,make sure .viminfo is writable for you
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" theme
+set colorcolumn=78
+
+au InsertLeave * set nopaste
+
+vnoremap < <gv
+vnoremap > >gv
