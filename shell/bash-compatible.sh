@@ -109,18 +109,29 @@ preexec_functions+=(_prompt_append_history)
 precmd_functions+=(_prompt_smart_ls)
 precmd_functions+=(_prompt_set_return_value)
 
-if [ -f /etc/bash_completion ]; then
-    # shellcheck source=/dev/null
-    source /etc/bash_completion
-fi
-
-if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-    # shellcheck source=/dev/null
-	source /usr/share/git-core/contrib/completion/git-prompt.sh
+if [ -r /usr/share/git/git-prompt.sh ]; then
+    . /usr/share/git/git-prompt.sh
 fi
 
 if command -v __git_ps1 > /dev/null; then
     PS1='$(_prompt_show_return_value)$(_prompt_slow_command)\H \A$(__git_ps1) $(_prompt_fish_path)\n\j '
 else
     PS1='$(_prompt_show_return_value)$(_prompt_slow_command)\H \A $(_prompt_fish_path)\n\j '
+fi
+
+# shellcheck shell=sh disable=SC1091,SC2039,SC2166
+# Check for interactive bash and that we haven't already been sourced.
+if [ "x${BASH_VERSION-}" != x -a "x${PS1-}" != x -a "x${BASH_COMPLETION_VERSINFO-}" = x ]; then
+
+    # Check for recent enough version of bash.
+    if [ "${BASH_VERSINFO[0]}" -gt 4 ] ||
+        [ "${BASH_VERSINFO[0]}" -eq 4 -a "${BASH_VERSINFO[1]}" -ge 2 ]; then
+        [ -r "${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion" ] &&
+            . "${XDG_CONFIG_HOME:-$HOME/.config}/bash_completion"
+        if shopt -q progcomp && [ -r /usr/share/bash-completion/bash_completion ]; then
+            # Source completion code.
+            . /usr/share/bash-completion/bash_completion
+        fi
+    fi
+
 fi

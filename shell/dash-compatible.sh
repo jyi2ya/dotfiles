@@ -76,10 +76,10 @@ cn() {
 }
 
 if command_exists sudo; then
+    alias sudo='sudo '
     alias apt='sudo apt'
     alias reboot='sudo reboot'
     alias root='sudo su -'
-    alias i='sudo apt install'
     alias rbt='reboot'
     alias poweroff='sudo poweroff'
 fi
@@ -104,7 +104,7 @@ alias dc='docker container'
 # ls
 alias la='ls -A'
 alias ll='ls -lh'
-alias lt='ls -hsS1'
+alias lt='ls --human-readable --size -1 -S --classify'
 alias ls='ls -F'
 
 # grep
@@ -162,6 +162,7 @@ g() {
 }
 
 alias h='head'
+alias i='apt install'
 
 j() {
     if [ $# = 0 ]; then
@@ -302,6 +303,12 @@ alias pp='parallel --pipe -k '
 alias pr='parallel'
 alias tsi='ts -i "%H:%M:%.S"'
 alias mj='make -j$(nproc)'
+alias watch='watch -c'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias dmesg='dmesg -HL'
+alias ip='ip -c=auto'
+
 if ! command_exists rg; then
     alias rg='grep -rE'
 fi
