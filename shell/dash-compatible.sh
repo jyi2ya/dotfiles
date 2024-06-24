@@ -28,7 +28,7 @@ alias gin='git init'
 alias gbl='git blame'
 alias grm='git rm'
 
-if command -v xclip >/dev/null; then
+if command_exists xclip; then
     gcl() {
         if [ -n "$1" ]; then
             git clone "$@"
@@ -75,11 +75,19 @@ cn() {
 	done
 }
 
+if command_exists sudo; then
+    alias apt='sudo apt'
+    alias reboot='sudo reboot'
+    alias root='sudo su -'
+    alias i='sudo apt install'
+    alias rbt='reboot'
+    alias poweroff='sudo poweroff'
+fi
+
 # apt
-alias apt='sudo apt'
 alias sa='apt'
-alias au='sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt-file update && apt autoremove'
-alias ai='sudo apt install'
+alias au='apt update && apt upgrade && apt full-upgrade && apt autoremove && sudo apt-file update'
+alias ai='apt install'
 alias ali='apt list --installed'
 alias al='apt list'
 alias af='apt-file -x find'
@@ -89,16 +97,9 @@ alias aar='apt autoremove'
 # docker
 alias dr='docker run'
 alias dps='docker ps'
-alias sd='sudo docker'
-alias sdr='sudo docker run'
 alias dl='docker load'
 alias di='docker image'
 alias dc='docker container'
-
-# poweroff & reboot
-alias reboot='sudo reboot'
-alias rbt='reboot'
-alias poweroff='sudo poweroff'
 
 # ls
 alias la='ls -A'
@@ -161,7 +162,6 @@ g() {
 }
 
 alias h='head'
-alias i='sudo apt install'
 
 j() {
     if [ $# = 0 ]; then
@@ -291,7 +291,6 @@ alias nms='nms -cs -f white'
 alias nsend='nc -Nnvlp 6737 -q 1'
 alias pad='pueue add '
 alias rl='exec dash -l'
-alias root='sudo su -'
 alias sck='shellcheck -Cauto -s sh'
 alias sr='sort -R'
 alias tf='tail -f'
@@ -303,7 +302,7 @@ alias pp='parallel --pipe -k '
 alias pr='parallel'
 alias tsi='ts -i "%H:%M:%.S"'
 alias mj='make -j$(nproc)'
-if ! command -v rg >/dev/null; then
+if ! command_exists rg; then
     alias rg='grep -rE'
 fi
 
@@ -332,7 +331,7 @@ md()
 }
 
 fk() {
-    if command -v fzf; then
+    if command_exists fzf; then
         fk_pid=$(ps -ef | sed 1d | fzf -m --tac | awk '{print $2}')
 
         if [ -n "$fk_pid" ]; then
@@ -348,11 +347,11 @@ oe() {
 }
 
 # Vim
-if command -v vi >/dev/null; then
+if command_exists vi >/dev/null; then
     EDITOR="vi"
 fi
 
-if command -v vim >/dev/null; then
+if command_exists vim >/dev/null; then
     EDITOR="vim"
     alias vi='vim'
 fi
