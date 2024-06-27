@@ -5,6 +5,9 @@ case $- in
       *) return;;
 esac
 
+export LC_ALL=C.UTF-8
+unset LANG LANGUAGE
+
 command_exists() {
     { command -v "$1" || which "$1"; } >/dev/null
 }
