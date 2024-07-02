@@ -356,14 +356,16 @@ oe() {
 # Vim
 if command_exists vi >/dev/null; then
     EDITOR="vi"
+    VISUAL=vi
 fi
 
 if command_exists vim >/dev/null; then
     EDITOR="vim"
+    VISUAL=vim
     alias vi='vim'
 fi
 
-export EDITOR
+export EDITOR VISUAL
 
 # Fix typo
 alias lw='wl'
