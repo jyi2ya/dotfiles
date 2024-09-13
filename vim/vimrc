@@ -159,8 +159,7 @@ function! AutoSetFileHead()
         call append(3, "use warnings;")
         call append(4, "use autodie;")
         call append(5, "use feature qw/signatures postderef/;")
-        call append(6, "use open qw/:std :utf8/;")
-        call append(7, "no warnings qw/experimental::postderef/;")
+        call append(6, "no warnings qw/experimental::postderef/;")
     endif
 
     normal G
