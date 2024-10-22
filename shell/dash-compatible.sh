@@ -379,7 +379,7 @@ alias oo='o'
 alias ooo='o'
 alias cla='cal'
 
-for path in "$HOME/.bin" "$HOME/.local/bin" "$HOME/bin"; do
+for path in "$HOME/.cargo/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/bin"; do
     PATH="$path${PATH:+":"}$PATH"
 done
 
