@@ -93,6 +93,7 @@ alias al='apt list'
 alias af='apt-file -x find'
 alias ap='apt purge'
 alias aar='apt autoremove'
+alias ama='sudo apt-mark auto'
 
 # docker
 alias dr='docker run'
@@ -379,9 +380,15 @@ alias oo='o'
 alias ooo='o'
 alias cla='cal'
 
-for path in "$HOME/.cargo/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/bin"; do
+for path in "$HOME/.cargo/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/bin" ; do
     PATH="$path${PATH:+":"}$PATH"
 done
+
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 export PATH
 
