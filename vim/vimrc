@@ -126,7 +126,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 
-autocmd BufNewFile *.md,*.sh,*.pl exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.rs,*.md,*.sh,*.pl exec ":call AutoSetFileHead()"
 
 function! AutoSetFileHead()
     " .sh
@@ -160,6 +160,18 @@ function! AutoSetFileHead()
         call append(4, "use autodie;")
         call append(5, "use feature qw/signatures postderef/;")
         call append(6, "no warnings qw/experimental::postderef/;")
+    endif
+
+    " rust
+    if &filetype == 'rust'
+        call append(0, '#!/usr/bin/env -S cargo -Zscript')
+        call append(1, '---')
+        call append(2, '[package]')
+        call append(3, 'edition = "2024"')
+        call append(4, '[dependencies]')
+        call append(5, '---')
+        call append(6, 'fn main() {')
+        call append(7, '}')
     endif
 
     normal G
