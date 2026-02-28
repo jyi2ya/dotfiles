@@ -1,6 +1,7 @@
 #
 # System-wide NetHack configuration file for console-only NetHack.
 #
+#
 OPTIONS=windowtype:tty
 OPTIONS=toptenwin,hilite_pet,!number_pad
 OPTIONS=fixinv,safe_pet,sortpack,tombstone,color
@@ -11,6 +12,7 @@ OPTIONS=pickup_types:$
 OPTIONS=nomail
 OPTIONS=hitpointbar
 OPTIONS=norest_on_space
+OPTIONS=boulder:0
 
 # Enable this if you want to see your inventory sorted in alphabetical
 # order by item instead of by index letter:

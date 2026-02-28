@@ -398,5 +398,3 @@ if [ "$(id -u)" = 0 ]; then
 else
     PS1="$PS1 \$ "
 fi
-
-PERL_UNICODE=127

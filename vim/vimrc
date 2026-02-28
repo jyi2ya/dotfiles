@@ -118,6 +118,8 @@ autocmd Filetype markdown.mkd set cc=
 autocmd Filetype markdown.mkd set wrap
 autocmd Filetype markdown set cc=
 autocmd Filetype markdown set wrap
+autocmd Filetype pod set cc=
+autocmd Filetype pod set wrap
 
 autocmd Filetype go inoremap ?? if err != nil {<CR>return err<CR>}<CR>
 autocmd Filetype go inoremap ??? if err != nil {<CR>return nil, err<CR>}<CR>
@@ -126,7 +128,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 
-autocmd BufNewFile *.rs,*.md,*.sh,*.pl exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.pod,*.rs,*.md,*.sh,*.pl,*.pm exec ":call AutoSetFileHead()"
 
 function! AutoSetFileHead()
     " .sh
@@ -153,13 +155,20 @@ function! AutoSetFileHead()
 
     " perl
     if &filetype == 'perl'
-        call append(0, '#!/usr/bin/env perl')
-        call append(1, "use 5.020;")
+        call append(0, "#!/usr/bin/env perl")
+        call append(1, "use 5.036;")
         call append(2, "use utf8;")
-        call append(3, "use warnings;")
-        call append(4, "use autodie;")
-        call append(5, "use feature qw/signatures postderef/;")
-        call append(6, "no warnings qw/experimental::postderef/;")
+        call append(3, "use warnings 'all';")
+        call append(4, "use autodie ':all';")
+        call append(5, "utf8::decode($_) for @ARGV;")
+        call append(6, "binmode STDIN, ':utf8';")
+        call append(7, "binmode STDOUT, ':utf8';")
+        call append(8, "binmode STDERR, ':utf8';")
+    endif
+
+    " pod
+    if &filetype == 'pod'
+        call append(0, "=encoding utf8")
     endif
 
     " rust
