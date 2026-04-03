@@ -24,7 +24,7 @@ if [ -z "$PNPM_HOME" ]; then
 fi
 
 if [ -z "$NPM_CONFIG_PREFIX" ]; then
-    NPM_CONFIG_PREFIX="$HOME/.local/"
+    NPM_CONFIG_PREFIX="$HOME/.local"
     export NPM_CONFIG_PREFIX
 fi
 
