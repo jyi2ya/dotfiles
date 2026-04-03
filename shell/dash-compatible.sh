@@ -197,7 +197,7 @@ l() {
 
 m() {
 	if [ $# = 0 ]; then
-        make
+        make -j
 	elif [ $# = 1 ] && [ -f "$1" ]; then
 		mv "$1" .
     elif [ $# = 1 ]; then
@@ -379,18 +379,6 @@ alias ig='gi'
 alias oo='o'
 alias ooo='o'
 alias cla='cal'
-
-for path in "$HOME/.cargo/bin" "$HOME/.bin" "$HOME/.local/bin" "$HOME/bin" ; do
-    PATH="$path${PATH:+":"}$PATH"
-done
-
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-export PATH
 
 PS1="$USER@$(uname -n)"
 if [ "$(id -u)" = 0 ]; then

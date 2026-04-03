@@ -9,10 +9,3 @@ fi
 mkdir -p ~/.local/share/vim/shada/
 mkdir -p ~/.local/share/vim/swap/
 mkdir -p ~/.local/share/vim/undo/
-
-if [ -r "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
-
-export WINEDEBUG=-all
-export GOPATH="$HOME/.cargo"

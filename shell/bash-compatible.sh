@@ -45,7 +45,7 @@ _prompt_smart_ls()
     local this_dir_change this_pwd this_ls
     this_pwd=$PWD
     if [ "$this_pwd" == "$LAST_PWD" ]; then
-        this_dir_change=$(stat -c %Z .)
+        this_dir_change=$(stat -c %Y .)
         if [ "$this_dir_change" == "$LAST_DIR_CHANGE" ]; then
             return
         fi

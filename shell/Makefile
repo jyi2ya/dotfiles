@@ -1,4 +1,4 @@
-head = head.sh
+head = non-interactive.sh head.sh
 dash_part = dash-compatible.sh
 ash_part = busybox-ash-compatible.sh
 bash_part = lib/preexec.sh bash-compatible.sh lib/z.sh lib/fzf.sh lib/complete-alias.sh

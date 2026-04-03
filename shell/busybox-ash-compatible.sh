@@ -16,7 +16,7 @@ _prompt_show_return_value()
 
 _prompt_smart_ls()
 {
-	smart_ls_this_ls=$(command ls -xw 80 | sum)
+	smart_ls_this_ls=$(stat -c %Y .)
 	if [ "$LAST_LS" != "$smart_ls_this_ls" ] || [ "$LAST_PWD" != "$PWD" ]; then
 		LAST_LS="$smart_ls_this_ls"
 		LAST_PWD="$PWD"
@@ -46,7 +46,7 @@ BEGIN {
     }
 
     while (i <= pwd_items_len - 2) {
-        printf("/%s", substr(pwd_items[i], 1, 2));
+        printf("/%s", substr(pwd_items[i], 1, 3));
         ++i;
     }
 
