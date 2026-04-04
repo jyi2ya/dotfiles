@@ -25,7 +25,6 @@ save_history() {
 
 trap save_history EXIT
 
-export PAGER="less"
 export LESS="-R -i -g -W"
 export LESSOPEN='|/usr/bin/lesspipe %s'
 export LESSCLOSE='/usr/bin/lesspipe %s %s'

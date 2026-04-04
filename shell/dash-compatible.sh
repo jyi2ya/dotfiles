@@ -28,7 +28,7 @@ alias gin='git init'
 alias gbl='git blame'
 alias grm='git rm'
 
-if command_exists xclip; then
+if _jyi_command_exists xclip; then
     gcl() {
         if [ -n "$1" ]; then
             git clone "$@"
@@ -75,7 +75,7 @@ cn() {
 	done
 }
 
-if command_exists sudo; then
+if _jyi_command_exists sudo; then
     alias sudo='sudo '
     alias apt='sudo apt'
     alias reboot='sudo reboot'
@@ -281,7 +281,7 @@ alias bc='bc -lq'
 alias chomp='tr -d "\n"'
 alias cls='clear'
 alias cow='curseofwar -W18 -H20'
-alias cpv='rsync -ah --info=progress2'
+alias cpv='rsync -Pazh --info=progress2'
 alias cr='cargo run'
 alias ct='column -t'
 alias fmt='fmt -s'
@@ -310,7 +310,7 @@ alias grep='grep --color=auto'
 alias dmesg='dmesg -HL'
 alias ip='ip -c=auto'
 
-if ! command_exists rg; then
+if ! _jyi_command_exists rg; then
     alias rg='grep -rE'
 fi
 
@@ -339,7 +339,7 @@ md()
 }
 
 fk() {
-    if command_exists fzf; then
+    if _jyi_command_exists fzf; then
         fk_pid=$(ps -ef | sed 1d | fzf -m --tac | awk '{print $2}')
 
         if [ -n "$fk_pid" ]; then
@@ -353,20 +353,6 @@ oe() {
     nohup xdg-open "$@" >/dev/null 2>&1 &
     exit
 }
-
-# Vim
-if command_exists vi >/dev/null; then
-    EDITOR="vi"
-    VISUAL=vi
-fi
-
-if command_exists vim >/dev/null; then
-    EDITOR="vim"
-    VISUAL=vim
-    alias vi='vim'
-fi
-
-export EDITOR VISUAL
 
 # Fix typo
 alias lw='wl'
