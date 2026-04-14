@@ -1,5 +1,7 @@
 source ~/.vimrc.minimal
 
+color slate
+
 " ==== personal ====
 " let g:coc_status_warning_sign = '!!'
 

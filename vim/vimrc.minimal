@@ -1,7 +1,5 @@
 set nocompatible
 
-"color desert
-
 " filetype
 filetype on
 " Enable filetype plugins
