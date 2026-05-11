@@ -2,6 +2,9 @@
 
 umask 022
 
+alias fj='tmux new-session -s X -A'
+alias jf=fj
+
 # safety
 alias mv='mv -i'
 alias cp='cp -i'
