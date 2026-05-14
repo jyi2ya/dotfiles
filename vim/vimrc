@@ -163,9 +163,9 @@ function! AutoSetFileHead()
         call append(3, "use warnings 'all';")
         call append(4, "use autodie ':all';")
         call append(5, "utf8::decode($_) for @ARGV;")
-        call append(6, "binmode STDIN, ':utf8';")
-        call append(7, "binmode STDOUT, ':utf8';")
-        call append(8, "binmode STDERR, ':utf8';")
+        call append(6, "binmode STDIN, ':encoding(UTF-8)';")
+        call append(7, "binmode STDOUT, ':encoding(UTF-8)';")
+        call append(8, "binmode STDERR, ':encoding(UTF-8)';")
     endif
 
     " pod
