@@ -378,3 +378,5 @@ fi
 
 TMPDIR="$HOME/tmp"
 export TMPDIR
+TMUX_TMPDIR="$TMPDIR"
+export TMUX_TMPDIR
