@@ -41,7 +41,7 @@ if [ -z "$NPM_CONFIG_PREFIX" ]; then
     export NPM_CONFIG_PREFIX
 fi
 
-if [ -z "$NPM_CONFIG_PREFIX" ]; then
+if [ -z "$WINEDEBUG" ]; then
     WINEDEBUG=-all
     export WINEDEBUG
 fi

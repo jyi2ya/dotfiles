@@ -37,21 +37,28 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-LAST_DIR_CHANGE=$(stat -c %Z .)
+LAST_DIR_CHANGE=$(stat -c %Y . 2>/dev/null)
+LAST_DIR_FINGERPRINT=$(command ls -A -1 2>/dev/null | cksum)
 LAST_PWD="$PWD"
 _prompt_smart_ls()
 {
-    local this_dir_change this_pwd this_ls
+    local this_dir_change this_dir_fingerprint this_pwd
     this_pwd=$PWD
-    if [ "$this_pwd" == "$LAST_PWD" ]; then
-        this_dir_change=$(stat -c %Y .)
-        if [ "$this_dir_change" == "$LAST_DIR_CHANGE" ]; then
-            return
-        fi
+    this_dir_change=$(stat -c %Y . 2>/dev/null) || return
+
+    if [ "$this_pwd" == "$LAST_PWD" ] && [ "$this_dir_change" == "$LAST_DIR_CHANGE" ]; then
+        return
     fi
 
-    LAST_PWD=$this_pwd
-    LAST_DIR_CHANGE=$this_dir_change
+    this_dir_fingerprint=$(command ls -A -1 2>/dev/null | cksum)
+    if [ "$this_pwd" == "$LAST_PWD" ] && [ "$this_dir_fingerprint" == "$LAST_DIR_FINGERPRINT" ]; then
+        LAST_DIR_CHANGE="$this_dir_change"
+        return
+    fi
+
+    LAST_PWD="$this_pwd"
+    LAST_DIR_CHANGE="$this_dir_change"
+    LAST_DIR_FINGERPRINT="$this_dir_fingerprint"
     ls
     return
 }

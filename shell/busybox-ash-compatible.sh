@@ -5,7 +5,8 @@ alias rl='exec busybox ash -l'
 HISTFILE="$HOME/.ash_history"
 HISTFILESIZE=999999999
 
-LAST_LS=$(command ls -xw 80 | sum)
+LAST_DIR_CHANGE=$(stat -c %Y . 2>/dev/null)
+LAST_DIR_FINGERPRINT=$(command ls -A -1 2>/dev/null | cksum)
 LAST_PWD="$PWD"
 
 _prompt_show_return_value()
@@ -16,14 +17,24 @@ _prompt_show_return_value()
 
 _prompt_smart_ls()
 {
-	smart_ls_this_ls=$(stat -c %Y .)
-	if [ "$LAST_LS" != "$smart_ls_this_ls" ] || [ "$LAST_PWD" != "$PWD" ]; then
-		LAST_LS="$smart_ls_this_ls"
-		LAST_PWD="$PWD"
-        ls -xw 80
-        printf "@"
+    smart_ls_this_dir_change=$(stat -c %Y . 2>/dev/null) || return
+
+    if [ "$LAST_PWD" = "$PWD" ] && [ "$LAST_DIR_CHANGE" = "$smart_ls_this_dir_change" ]; then
         return
-	fi
+    fi
+
+    smart_ls_this_dir_fingerprint=$(command ls -A -1 2>/dev/null | cksum)
+    if [ "$LAST_PWD" = "$PWD" ] && [ "$LAST_DIR_FINGERPRINT" = "$smart_ls_this_dir_fingerprint" ]; then
+        LAST_DIR_CHANGE="$smart_ls_this_dir_change"
+        return
+    fi
+
+    LAST_DIR_CHANGE="$smart_ls_this_dir_change"
+    LAST_DIR_FINGERPRINT="$smart_ls_this_dir_fingerprint"
+    LAST_PWD="$PWD"
+    ls -xw 80
+    printf "@"
+    return
 }
 
 _prompt_fish_path()
