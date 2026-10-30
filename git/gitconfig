@@ -1,10 +1,13 @@
 [user]
-	email = jyi2ya@outlook.com
-	name = jyi2ya
+	email = jyi2ya@qq.com
+	name = jyi
 [core]
 	editor = vim
+	quotePath = false
+	pager = less -FRX
 [merge]
 	tool = vimdiff
+	conflictStyle = zdiff3
 [pull]
     rebase = true
 [credential]
@@ -18,3 +21,48 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = master
+[pager]
+	diff = less -FRSX
+	show = less -FRSX
+	log = less -FRX
+[diff]
+	algorithm = histogram
+	context = 20
+	interHunkContext = 60
+	colorMoved = zebra
+	colorMovedWS = allow-indentation-change
+	renames = copies
+	renameLimit = 0
+	statGraphWidth = 60
+	statNameWidth = 40
+	wsErrorHighlight = all
+	submodule = log
+[color]
+	ui = auto
+[log]
+	date = iso-local
+	decorate = auto
+	abbrevCommit = true
+	follow = true
+[blame]
+	date = iso-local
+	coloring = highlightRecent
+	markUnblamableLines = true
+	markIgnoredLines = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = -creatordate
+[column]
+	ui = auto
+[status]
+	showUntrackedFiles = all
+[rerere]
+	enabled = true
+[fetch]
+	prune = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+[help]
+	autoCorrect = prompt
